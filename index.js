@@ -85,12 +85,12 @@ function addManager()
         {
             name:'empId',
             type:'number',
-            message:'Please enter the Manager Employee id: (Six digits)'
+            message:'Please enter the Manager Employee id(Six digits): '
         },
         {
             name:'email',
             type:'input',
-            message:'Please enter Manager Email: (Format: yourname@company.com)'
+            message:'Please enter Manager Email (Format: yourname@company.com): '
         },
         {
             name:'officeNumber',
@@ -105,22 +105,31 @@ function addManager()
        
     ]).then(
         answer=>{
-           
+           console.log((answer.officeNumber).toString().length)
+            if(!(regex.test(answer.email))|| ((answer.officeNumber).toString().length!=10) || ((answer.empId).toString().length!=6))
+            {
+                console.log("Please enter valid data for Manager");
+                addManager();
+            }
+            else   
+            if(answer.addMember==='Add the team Members')
+            {
+                managerMenu();
+            }
+            else if(answer.addMember==='Finish building my team' )
+            {
+                console.log("Team building process is completed");
+                writeToFile("index.html",team);
+            }
+            
+
             
             const newManager= new Manager(answer.name,answer.empId,answer.email,answer.officeNumber);
             managers.push(newManager);
             team.push(newManager);
             
 
-            if(answer.addMember==='Add the team Members')
-            {
-                managerMenu();
-            }
-            else
-            {
-                console.log("Team building process is completed");
-                writeToFile("index.html",team);
-            }
+          
         }
     )
 }
@@ -136,17 +145,17 @@ function addEngineer(){
         {
             name:'empId',
             type:'number',
-            message:'Please enter the Engineer Employee id:'
+            message:'Please enter the Engineer Employee id(Six digits): '
         },
         {
             name:'email',
             type:'input',
-            message:'Please enter Engineer Email:'
+            message:'Please enter Engineer Email (Format: yourname@company.com): '
         },
         {
             name:'github',
             type:'input',
-            message:'Please enter the Github username:'
+            message:'Please enter the Github profile link:(Format: https://github.com/Akshu3011)'
         },
         {
             name:"addMember",
@@ -156,21 +165,32 @@ function addEngineer(){
        
     ]).then(
         answer=>{
-            console.log(answer);
-            const newEngineer= new Engineer(answer.name,answer.empId,answer.email,answer.github);
-            engg.push(newEngineer);
-            team.push(newEngineer);
-            console.log(engg);
 
+
+            if(!(regex.test(answer.email)) || ((answer.empId).toString().length!=6))
+            {
+                console.log("Please enter valid data for Engineer");
+                addEngineer();
+                
+            }
+            else
             if(answer.addMember==='Add the team Members')
             {
                 managerMenu();
             }
             else
+            if(answer.addMember==='Finish building my team')
             {
                 console.log("Team building process is completed");
                 writeToFile("index.html",team);
             }
+            
+                const newEngineer= new Engineer(answer.name,answer.empId,answer.email,answer.github);
+                engg.push(newEngineer);
+                team.push(newEngineer);
+            
+            
+           
         }
     )
 }
@@ -185,12 +205,12 @@ function addIntern(){
         {
             name:'empId',
             type:'number',
-            message:'Please enter the Intern Employee id:'
+            message:'Please enter the Intern Employee id(Six digits): '
         },
         {
             name:'email',
             type:'input',
-            message:'Please enter Intern Email:'
+            message:'Please enter Intern Email (Format: yourname@company.com): '
         },
         {
             name:'school',
@@ -205,20 +225,29 @@ function addIntern(){
        
     ]).then(
         answer=>{
-            console.log(answer);
-            const newIntern= new Intern(answer.name,answer.empId,answer.email,answer.school);
-            interns.push(newIntern);
-            team.push(newIntern);
-            console.log(interns);
+            if(!(regex.test(answer.email)) || ((answer.empId).toString().length!=6))
+            {
+                console.log("Please enter valid data for Intern");
+                addIntern();
+            }
+            else
             if(answer.addMember==='Add the team Members')
             {
                 managerMenu();
             }
             else
+            if(answer.addMember==='Finish building my team')
             {
                 console.log("Team building process is completed");
                 writeToFile("index.html",team);
             }
+           
+                const newIntern= new Intern(answer.name,answer.empId,answer.email,answer.school);
+                interns.push(newIntern);
+                team.push(newIntern);
+                
+            
+            
         }
     )
 }
