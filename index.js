@@ -105,7 +105,9 @@ function addManager()
        
     ]).then(
         answer=>{
-           console.log((answer.officeNumber).toString().length)
+            const newManager= new Manager(answer.name,answer.empId,answer.email,answer.officeNumber);
+            managers.push(newManager);
+            team.push(newManager);
             if(!(regex.test(answer.email))|| ((answer.officeNumber).toString().length!=10) || ((answer.empId).toString().length!=6))
             {
                 console.log("Please enter valid data for Manager");
@@ -124,9 +126,7 @@ function addManager()
             
 
             
-            const newManager= new Manager(answer.name,answer.empId,answer.email,answer.officeNumber);
-            managers.push(newManager);
-            team.push(newManager);
+          
             
 
           
@@ -165,7 +165,9 @@ function addEngineer(){
        
     ]).then(
         answer=>{
-
+            const newEngineer= new Engineer(answer.name,answer.empId,answer.email,answer.github);
+            engg.push(newEngineer);
+            team.push(newEngineer);
 
             if(!(regex.test(answer.email)) || ((answer.empId).toString().length!=6))
             {
@@ -185,12 +187,8 @@ function addEngineer(){
                 writeToFile("index.html",team);
             }
             
-                const newEngineer= new Engineer(answer.name,answer.empId,answer.email,answer.github);
-                engg.push(newEngineer);
-                team.push(newEngineer);
-            
-            
-           
+               
+        
         }
     )
 }
@@ -225,6 +223,9 @@ function addIntern(){
        
     ]).then(
         answer=>{
+            const newIntern= new Intern(answer.name,answer.empId,answer.email,answer.school);
+                interns.push(newIntern);
+                team.push(newIntern);
             if(!(regex.test(answer.email)) || ((answer.empId).toString().length!=6))
             {
                 console.log("Please enter valid data for Intern");
@@ -242,9 +243,7 @@ function addIntern(){
                 writeToFile("index.html",team);
             }
            
-                const newIntern= new Intern(answer.name,answer.empId,answer.email,answer.school);
-                interns.push(newIntern);
-                team.push(newIntern);
+                
                 
             
             
