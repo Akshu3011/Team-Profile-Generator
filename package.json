@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "email-verifier": "^0.4.1",
     "inquirer": "^8.2.4"
   }
 }
